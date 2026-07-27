@@ -135,7 +135,7 @@ ul { list-style: none; }
 .hero {
   background:
     linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.80)),
-    url('/entre_lineas/static/img/fondo_congreso_estilizado.png') center / cover no-repeat;
+    url('/observatorio/static/img/fondo_congreso_estilizado.png') center / cover no-repeat;
   padding: 1rem 1rem 3rem;
   text-align: center;
   color: #fff;
