@@ -1,0 +1,5 @@
+flask>=3.0
+flask-flatpages>=0.8
+frozen-flask>=1.0
+markdown>=3.5
+gunicorn>=21.2

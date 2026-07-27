@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análisis — EntreLíneas</title>
+  <link rel="stylesheet" href="/entre_lineas/static/css/style.css" />
+  <link rel="icon" href="/entre_lineas/static/img/logo.png" type="image/png" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/entre_lineas/" class="nav-logo">
+        <img src="/entre_lineas/static/img/logo.png" alt="EntreLíneas" />
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/entre_lineas/"      class="">Inicio</a></li>
+        <li><a href="/entre_lineas/analisis/"     class="active">Análisis</a></li>
+        <li><a href="/entre_lineas/metodologia/" class="">Metodología</a></li>
+        <li><a href="/entre_lineas/tendencias/"  class="">Tendencias</a></li>
+        <li><a href="/entre_lineas/equipo/"     class="">Equipo</a></li>
+        <li><a href="/entre_lineas/nosotros/"   class="">Sobre Nosotrxs</a></li>
+        <li><a href="/entre_lineas/alertas/"    class="">Alertas</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+    
+<section class="page-header page-header--analisis">
+  <div class="container">
+    <h1>Análisis legislativos</h1>
+    <p>Revisamos proyectos de ley con rigor y perspectiva crítica.</p>
+  </div>
+</section>
+
+<section class="alertas-section">
+  <div class="container alertas-inner">
+    <div class="proximamente-badge">Próximamente</div>
+    <h2>Estamos preparando nuestros primeros análisis</h2>
+    <p>Muy pronto encontrarás aquí un seguimiento riguroso de los proyectos de ley que discute el Congreso, con nivel de riesgo, resúmenes claros y perspectiva crítica sobre su impacto en derechos.</p>
+    <ul class="alertas-features">
+      <li>📋 Tabla de proyectos de ley en seguimiento</li>
+      <li>🏷️ Filtros por eje temático (género, democracia, medio ambiente, pueblos indígenas, seguridad ciudadana)</li>
+      <li>📖 Análisis a profundidad de cada iniciativa</li>
+    </ul>
+    <p class="alertas-cta-text">Mientras tanto, síguenos en redes sociales para enterarte apenas publiquemos nuestro primer análisis.</p>
+    <a href="https://instagram.com/observatorio_entrelineas" target="_blank" rel="noopener" class="btn-primary">Síguenos en Instagram</a>
+  </div>
+</section>
+
+
+
+
+<!-- PROCESO LEGISLATIVO -->
+<section class="proceso-section">
+  <div class="container">
+    <h2 class="section-title">¿Cómo nace una ley en el <span class="hl--proceso">Perú</span>?</h2>
+    <p class="proceso-intro">Entender las etapas del proceso legislativo es clave para saber cuándo actuar y en qué momento la ciudadanía puede incidir. Haz clic en cada paso para ver el detalle.</p>
+
+    <style>
+      /* ── Timeline variables ──────────────────────────── */
+      .proceso-tl {
+        --tl-red:     #E7001D;
+        --tl-red-dk:  #9e0013;
+        --tl-orange:  #FF8711;
+        --tl-org-dk:  #b35800;
+        --tl-yellow:  #FFC400;
+        --tl-ylw-dk:  #8a6a00;
+        --tl-green:   #8a9630;
+        --tl-grn-bg:  #E5EA9C;
+      }
+
+      .proceso-tl {
+        max-width: 640px;
+        margin: 2rem auto 0;
+      }
+
+      /* Pista */
+      .tl-track {
+        position: relative;
+        padding-left: 56px;
+      }
+
+      .tl-rail {
+        position: absolute;
+        left: 20px; top: 0; bottom: 0;
+        width: 3px;
+        background: var(--gris-borde);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .tl-rail-fill {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 0%;
+        border-radius: 2px;
+        background: linear-gradient(to bottom, var(--tl-red), var(--tl-orange), var(--tl-yellow), var(--tl-green));
+        transition: height 0.5s ease;
+      }
+
+      /* Paso */
+      .tl-step {
+        position: relative;
+        margin-bottom: 1.1rem;
+        opacity: 0;
+        transform: translateX(16px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .tl-step.visible { opacity: 1; transform: translateX(0); }
+
+      /* Dot */
+      .tl-dot {
+        position: absolute;
+        left: -44px; top: 13px;
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 14px; font-weight: 600;
+        color: #fff; z-index: 1;
+        transition: transform 0.2s ease;
+      }
+
+      .tl-step.active .tl-dot { transform: scale(1.15); }
+
+      .dot-red    { background: var(--tl-red); }
+      .dot-orange { background: var(--tl-orange); }
+      .dot-yellow { background: var(--tl-yellow); color: var(--tl-ylw-dk); }
+      .dot-green  { background: var(--tl-green); }
+
+      /* Tarjeta */
+      .tl-card {
+        background: #fff;
+        border: 1px solid var(--gris-borde);
+        border-left: 4px solid transparent;
+        border-radius: var(--radio);
+        padding: .9rem 1.1rem;
+        cursor: pointer;
+        transition: background var(--trans);
+        box-shadow: var(--sombra);
+      }
+
+      .tl-card:hover { background: var(--gris-bg); }
+
+      .card-red    { border-left-color: var(--tl-red) !important; }
+      .card-orange { border-left-color: var(--tl-orange) !important; }
+      .card-yellow { border-left-color: var(--tl-yellow) !important; }
+      .card-green  { border-left-color: var(--tl-green) !important; }
+
+      .tl-card-head {
+        display: flex; align-items: center;
+        justify-content: space-between; gap: 10px;
+      }
+
+      .tl-card-title {
+        font-size: 15px; font-weight: 600;
+        color: var(--texto); flex: 1;
+      }
+
+      /* Badges */
+      .tl-badge {
+        font-size: 11px; font-weight: 500;
+        padding: 3px 9px; border-radius: 99px;
+        white-space: nowrap;
+      }
+
+      .badge-red    { background: #fde8eb; color: var(--tl-red-dk); }
+      .badge-orange { background: #fff0e0; color: var(--tl-org-dk); }
+      .badge-yellow { background: #fff8d6; color: var(--tl-ylw-dk); }
+      .badge-green  { background: var(--tl-grn-bg); color: var(--tl-green); }
+
+      /* Chevron */
+      .tl-chevron {
+        font-size: 18px; color: var(--texto-sub);
+        transition: transform 0.3s ease; flex-shrink: 0;
+        line-height: 1;
+      }
+
+      .tl-card.open .tl-chevron { transform: rotate(180deg); }
+
+      /* Cuerpo expandible */
+      .tl-body { overflow: hidden; max-height: 0; transition: max-height 0.4s ease; }
+      .tl-body.open { max-height: 500px; }
+
+      .tl-body-inner {
+        padding-top: .7rem; margin-top: .7rem;
+        border-top: 1px solid var(--gris-borde);
+      }
+
+      .tl-desc {
+        font-size: 14px; color: var(--texto-sub);
+        line-height: 1.65; margin-bottom: .6rem;
+      }
+
+      .tl-subs {
+        list-style: none;
+        display: flex; flex-direction: column; gap: 6px;
+      }
+
+      .tl-subs li {
+        display: flex; align-items: flex-start; gap: 8px;
+        font-size: 13px; color: var(--texto-sub); line-height: 1.5;
+      }
+
+      .sub-ltr {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 20px; height: 20px; border-radius: 50%;
+        font-size: 11px; font-weight: 600; flex-shrink: 0; margin-top: 1px;
+      }
+
+      .sub-red    { background: #fde8eb; color: var(--tl-red-dk); }
+      .sub-orange { background: #fff0e0; color: var(--tl-org-dk); }
+      .sub-yellow { background: #fff8d6; color: var(--tl-ylw-dk); }
+      .sub-green  { background: var(--tl-grn-bg); color: var(--tl-green); }
+
+      .tl-ref {
+        display: inline-block; margin-top: .5rem;
+        font-size: 12px; color: var(--texto-sub); font-style: italic;
+      }
+
+      /* Conector entre cámaras */
+      .tl-connector {
+        position: relative; margin-bottom: 1.1rem;
+        opacity: 0; transform: translateX(16px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .tl-connector.visible { opacity: 1; transform: translateX(0); }
+
+      .conn-mini-dot {
+        position: absolute;
+        left: -40px; top: 50%; transform: translateY(-50%);
+        width: 12px; height: 12px; border-radius: 50%;
+        background: var(--gris-borde); border: 2px solid #fff; z-index: 1;
+      }
+
+      .conn-card {
+        background: var(--gris-bg);
+        border: 1px dashed var(--gris-borde);
+        border-radius: var(--radio);
+        padding: .5rem 1rem;
+        font-size: 13px; color: var(--texto-sub);
+        display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+      }
+
+      .tl-footer-note {
+        text-align: center; margin-top: 1.25rem;
+        font-size: 11px; color: #fff; font-style: italic;
+      }
+    </style>
+
+    <div class="proceso-tl" aria-label="Proceso legislativo en el Congreso bicameral del Perú">
+      <div class="tl-track" id="tl-track">
+        <div class="tl-rail"><div class="tl-rail-fill" id="tl-rail-fill"></div></div>
+
+        <!-- PASO 1 -->
+        <div class="tl-step" id="tl-s0">
+          <div class="tl-dot dot-red">1</div>
+          <div class="tl-card card-red" onclick="tlToggle(0)" role="button" tabindex="0"
+               aria-expanded="false" aria-controls="tl-body-0" onkeydown="tlKd(event,0)">
+            <div class="tl-card-head">
+              <span class="tl-card-title">Proponen iniciativa</span>
+              <span class="tl-badge badge-red">Inicio</span>
+              <span class="tl-chevron" aria-hidden="true">&#8964;</span>
+            </div>
+            <div class="tl-body" id="tl-body-0" role="region">
+              <div class="tl-body-inner">
+                <p class="tl-desc">
+                  Los congresistas, el presidente de la República, las instituciones autónomas
+                  o los ciudadanos presentan una iniciativa legislativa ante el Congreso.
+                </p>
+                <span class="tl-ref">Arts. 107 y 110 RCD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 2 -->
+        <div class="tl-step" id="tl-s1">
+          <div class="tl-dot dot-orange">2</div>
+          <div class="tl-card card-orange" onclick="tlToggle(1)" role="button" tabindex="0"
+               aria-expanded="false" aria-controls="tl-body-1" onkeydown="tlKd(event,1)">
+            <div class="tl-card-head">
+              <span class="tl-card-title">En la Cámara de Diputados</span>
+              <span class="tl-badge badge-orange">Cámara baja</span>
+              <span class="tl-chevron" aria-hidden="true">&#8964;</span>
+            </div>
+            <div class="tl-body" id="tl-body-1" role="region">
+              <div class="tl-body-inner">
+                <p class="tl-desc">
+                  La iniciativa es derivada a una comisión ordinaria para su estudio,
+                  dictamen y posterior votación en el Pleno.
+                </p>
+                <ul class="tl-subs">
+                  <li><span class="sub-ltr sub-orange">a</span><span>Se destina a una comisión ordinaria</span></li>
+                  <li><span class="sub-ltr sub-orange">b</span><span>La comisión aprueba el dictamen</span></li>
+                  <li><span class="sub-ltr sub-orange">c</span><span>Pasa al Pleno para su aprobación</span></li>
+                </ul>
+                <span class="tl-ref">Art. 104 Reglamento de la Cámara de Diputados</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONECTOR -->
+        <div class="tl-connector" id="tl-conn0">
+          <div class="conn-mini-dot"></div>
+          <div class="conn-card">
+            <span>→</span>
+            <span><strong>Ruta al Senado</strong> — el dictamen aprobado por la Cámara pasa a la cámara revisora en un plazo máximo de 15 días hábiles. <em>Art. 148 RCD</em></span>
+          </div>
+        </div>
+
+        <!-- PASO 3 -->
+        <div class="tl-step" id="tl-s2">
+          <div class="tl-dot dot-orange">3</div>
+          <div class="tl-card card-orange" onclick="tlToggle(2)" role="button" tabindex="0"
+               aria-expanded="false" aria-controls="tl-body-2" onkeydown="tlKd(event,2)">
+            <div class="tl-card-head">
+              <span class="tl-card-title">En el Senado</span>
+              <span class="tl-badge badge-orange">Cámara alta</span>
+              <span class="tl-chevron" aria-hidden="true">&#8964;</span>
+            </div>
+            <div class="tl-body" id="tl-body-2" role="region">
+              <div class="tl-body-inner">
+                <p class="tl-desc">
+                  Se revisa la iniciativa en una comisión ordinaria del Senado y se decide su suerte.
+                </p>
+                <ul class="tl-subs">
+                  <li><span class="sub-ltr sub-orange">a</span><span>Aprobar igual o con cambios (sin desnaturalizar la propuesta)</span></li>
+                  <li><span class="sub-ltr sub-orange">b</span><span>Se envía al Pleno del Senado para su aprobación</span></li>
+                  <li><span class="sub-ltr sub-orange">c</span><span>Aprobado, se firma la autógrafa y se envía al Ejecutivo</span></li>
+                </ul>
+                <span class="tl-ref">Art. 149 Reglamento del Senado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 4 -->
+        <div class="tl-step" id="tl-s3">
+          <div class="tl-dot dot-yellow">4</div>
+          <div class="tl-card card-yellow" onclick="tlToggle(3)" role="button" tabindex="0"
+               aria-expanded="false" aria-controls="tl-body-3" onkeydown="tlKd(event,3)">
+            <div class="tl-card-head">
+              <span class="tl-card-title">En el Ejecutivo</span>
+              <span class="tl-badge badge-yellow">Promulgación</span>
+              <span class="tl-chevron" aria-hidden="true">&#8964;</span>
+            </div>
+            <div class="tl-body" id="tl-body-3" role="region">
+              <div class="tl-body-inner">
+                <p class="tl-desc">
+                  El presidente de la República recibe la autógrafa de ley y tiene 15 días hábiles
+                  para promulgarla o devolverla al Congreso con observaciones. Si no actúa en ese
+                  plazo, la promulga el presidente del Congreso.
+                </p>
+                <span class="tl-ref">Art. 108 Constitución Política del Perú</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 5 -->
+        <div class="tl-step" id="tl-s4">
+          <div class="tl-dot dot-green" style="font-size:17px;">✓</div>
+          <div class="tl-card card-green" onclick="tlToggle(4)" role="button" tabindex="0"
+               aria-expanded="false" aria-controls="tl-body-4" onkeydown="tlKd(event,4)">
+            <div class="tl-card-head">
+              <span class="tl-card-title">Ley promulgada y publicada</span>
+              <span class="tl-badge badge-green">Vigente</span>
+              <span class="tl-chevron" aria-hidden="true">&#8964;</span>
+            </div>
+            <div class="tl-body" id="tl-body-4" role="region">
+              <div class="tl-body-inner">
+                <p class="tl-desc">
+                  Una vez promulgada, la ley se publica en el diario oficial <em>El Peruano</em>
+                  y entra en vigencia al día siguiente de su publicación, salvo que la propia ley
+                  establezca otra fecha.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /tl-track -->
+
+      <p class="tl-footer-note">Fuente: Reglamento de la Cámara de Diputados, Reglamento del Senado y Constitución Política del Perú</p>
+    </div><!-- /proceso-tl -->
+
+  </div>
+</section>
+
+<script>
+(function() {
+  const TL_STEPS = ['tl-s0','tl-s1','tl-conn0','tl-s2','tl-s3','tl-s4'];
+  const tlOpens = [false, false, false, false, false];
+
+  window.tlToggle = function(i) {
+    tlOpens[i] = !tlOpens[i];
+    const card = document.querySelector('#tl-s' + i + ' .tl-card');
+    const body = document.getElementById('tl-body-' + i);
+    if (!card || !body) return;
+    card.classList.toggle('open', tlOpens[i]);
+    body.classList.toggle('open', tlOpens[i]);
+    card.setAttribute('aria-expanded', tlOpens[i]);
+  };
+
+  window.tlKd = function(e, i) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tlToggle(i); }
+  };
+
+  function updateRail() {
+    const track = document.getElementById('tl-track');
+    const fill  = document.getElementById('tl-rail-fill');
+    if (!track || !fill) return;
+    const tr = track.getBoundingClientRect();
+    const visible = TL_STEPS.filter(id => document.getElementById(id)?.classList.contains('visible'));
+    if (!visible.length) { fill.style.height = '0%'; return; }
+    const lastEl = document.getElementById(visible[visible.length - 1]);
+    const dotOffset = (lastEl.getBoundingClientRect().top - tr.top) + 20;
+    const pct = Math.min(100, Math.max(0, (dotOffset / tr.height) * 100));
+    fill.style.height = pct + '%';
+  }
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); updateRail(); }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  TL_STEPS.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+
+  setTimeout(() => {
+    if (!document.getElementById('tl-s0')?.classList.contains('visible')) {
+      TL_STEPS.forEach(id => document.getElementById(id)?.classList.add('visible'));
+      updateRail();
+    }
+  }, 600);
+})();
+</script>
+
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="/entre_lineas/" class="footer-logo">
+        <img src="/entre_lineas/static/img/logo.png" alt="EntreLíneas" />
+      </a>
+      <p class="footer-tagline">Observatorio de Proyectos de Ley</p>
+      <div class="footer-links">
+        <a href="https://instagram.com/observatorio_entrelineas" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:entrelineas.observatorio@gmail.com">Correo</a>
+      </div>
+      <p class="footer-email">entrelineas.observatorio@gmail.com</p>
+      <p class="footer-copy">&copy; 2026 EntreLíneas. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="/entre_lineas/static/js/main.js"></script>
+</body>
+</html>

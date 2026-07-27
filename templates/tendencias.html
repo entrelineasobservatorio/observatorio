@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Tendencias — EntreLíneas{% endblock %}
+
+{% block content %}
+<section class="page-header page-header--tendencias">
+  <div class="container">
+    <h1>¿Cuál es el <span class="hl hl--tendencias">panorama</span>?</h1>
+    <p>Proyectos de ley en el Congreso que representan un riesgo para cada uno de nuestros ejes de investigación.</p>
+  </div>
+</section>
+
+<section class="alertas-section">
+  <div class="container alertas-inner">
+    <div class="proximamente-badge">Próximamente</div>
+    <h2>Estamos construyendo el panorama</h2>
+    <p>Aquí verás cuántos proyectos de ley representan un riesgo para cada uno de nuestros ejes de investigación (género, democracia, medio ambiente, pueblos indígenas y seguridad ciudadana), actualizado a medida que publiquemos análisis.</p>
+    <ul class="alertas-features">
+      <li>📊 Conteo de proyectos en riesgo por eje temático</li>
+      <li>🔗 Acceso directo a los análisis de cada eje</li>
+      <li>📈 Total de proyectos analizados en el observatorio</li>
+    </ul>
+    <p class="alertas-cta-text">Mientras tanto, síguenos en redes sociales para enterarte apenas tengamos las primeras tendencias.</p>
+    <a href="https://instagram.com/observatorio_entrelineas" target="_blank" rel="noopener" class="btn-primary">Síguenos en Instagram</a>
+  </div>
+</section>
+
+{# ────────────────────────────────────────────────────────────
+   Contenido real de Tendencias, pausado temporalmente mientras no
+   hay proyectos de ley cargados. Se deja comentado (no se borra)
+   para no perder la estructura ya construida.
+   ──────────────────────────────────────────────────────────── #}
+{#
+<section class="tendencias-section">
+  <div class="container">
+    <h2 class="section-title tendencias-titulo">¿Cuál es el panorama?</h2>
+
+    <div class="tendencias-ejes">
+      {% for eje in ejes %}
+      <div class="eje-card">
+        <div class="eje-card-inner">
+          <span class="eje-count">{{ conteo[eje] }}</span>
+          <div class="eje-info">
+            <span class="eje-label">proyecto{{ 's' if conteo[eje] != 1 }} que afecta{{ '' if conteo[eje] != 1 else 'n' }}</span>
+            <span class="eje-nombre">{{ eje }}</span>
+          </div>
+        </div>
+        <a href="{{ url_for('analisis', categoria=eje) }}" class="eje-link">Ver análisis →</a>
+      </div>
+      {% endfor %}
+
+      <div class="eje-total">
+        <span class="eje-total-num">{{ total }}</span>
+        <span class="eje-total-label">proyectos analizados en total</span>
+      </div>
+    </div>
+  </div>
+</section>
+#}
+
+{% endblock %}

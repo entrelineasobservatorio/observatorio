@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}Metodología — EntreLíneas{% endblock %}
+
+{% block content %}
+<section class="page-header page-header--metodologia">
+  <div class="container">
+    <h1>Test de <span class="hl hl--metodologia">Observabilidad</span></h1>
+    <p>El filtro metodológico que guía la selección de proyectos de ley.</p>
+  </div>
+</section>
+
+<section class="metodo-section">
+  <div class="container">
+
+    <div class="metodo-intro">
+      <p><strong>Todos los proyectos pasan por un Test de Observabilidad</strong>. Este es el principal filtro del observatorio. Su objetivo es responder a una pregunta clave: <strong>¿Por qué este proyecto merece ser observado?</strong> De esta forma, logramos que las selecciones sean coherentes con los objetivos de la institución, aprovechar mejor los recursos y evitar decisiones arbitrarias en la selección de proyectos de ley.</p>
+    </div>
+
+    <h2 class="section-title metodo-titulo">Criterios de evaluación</h2>
+
+    <div class="criterios-grid">
+
+      <div class="criterio-card">
+        <span class="criterio-num">1</span>
+        <div class="criterio-body">
+          <h3 class="criterio-titulo">Relevancia estratégica para los ejes del observatorio</h3>
+          <p class="criterio-pregunta">¿El proyecto se relaciona con los ejes prioritarios definidos institucionalmente?</p>
+        </div>
+      </div>
+
+      <div class="criterio-card">
+        <span class="criterio-num">2</span>
+        <div class="criterio-body">
+          <h3 class="criterio-titulo">Riesgo potencial para derechos humanos</h3>
+          <p class="criterio-pregunta">¿Existen indicios razonables de que la iniciativa pueda generar riesgos para el ejercicio, protección o garantía de los derechos humanos?</p>
+        </div>
+      </div>
+
+      <div class="criterio-card">
+        <span class="criterio-num">3</span>
+        <div class="criterio-body">
+          <h3 class="criterio-titulo">Riesgo para la institucionalidad democrática</h3>
+          <p class="criterio-pregunta">¿La propuesta podría afectar mecanismos de control democrático, equilibrio de poderes, independencia judicial o autonomía institucional?</p>
+        </div>
+      </div>
+
+      <div class="criterio-card">
+        <span class="criterio-num">4</span>
+        <div class="criterio-body">
+          <h3 class="criterio-titulo">Impacto sobre grupos en situación de vulnerabilidad</h3>
+          <p class="criterio-pregunta">¿La medida podría afectar de manera directa o indirecta a poblaciones históricamente discriminadas?</p>
+        </div>
+      </div>
+
+      <div class="criterio-card">
+        <span class="criterio-num">5</span>
+        <div class="criterio-body">
+          <h3 class="criterio-titulo">Magnitud del impacto potencial</h3>
+          <p class="criterio-pregunta">¿Los efectos esperados podrían afectar a un sector amplio de la población, generar cambios estructurales o producir consecuencias difíciles de revertir?</p>
+        </div>
+      </div>
+
+      <div class="criterio-card">
+        <span class="criterio-num">6</span>
+        <div class="criterio-body">
+          <h3 class="criterio-titulo">Probabilidad de avance legislativo</h3>
+          <p class="criterio-pregunta">¿Existen condiciones políticas que hagan plausible su aprobación o avance significativo dentro del procedimiento legislativo?</p>
+        </div>
+      </div>
+
+      <div class="criterio-card criterio-card--full">
+        <span class="criterio-num">7</span>
+        <div class="criterio-body">
+          <h3 class="criterio-titulo">Oportunidad de incidencia</h3>
+          <p class="criterio-pregunta">¿La iniciativa se encuentra en una etapa del procedimiento legislativo que permita generar información o análisis que puedan contribuir de manera oportuna al debate público o a la toma de decisiones?</p>
+        </div>
+      </div>
+
+    </div><!-- /criterios-grid -->
+
+    <h2 class="section-title metodo-titulo">Resultado del Test</h2>
+
+    <div class="tabla-wrap resultado-tabla-wrap">
+      <table class="proyectos-tabla resultado-tabla">
+        <thead>
+          <tr>
+            <th>Criterios positivos</th>
+            <th>Resultado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="riesgo-badge resultado-badge--bajo">0 a 2</span></td>
+            <td class="resultado-nombre">No observable</td>
+            <td>Permanece únicamente en monitoreo general.</td>
+          </tr>
+          <tr>
+            <td><span class="riesgo-badge resultado-badge--medio">3 a 4</span></td>
+            <td class="resultado-nombre">Observable</td>
+            <td>Se realiza evaluación preliminar por la Comisión de Análisis.</td>
+          </tr>
+          <tr>
+            <td><span class="riesgo-badge resultado-badge--alto">5 o más</span></td>
+            <td class="resultado-nombre">Observable prioritario</td>
+            <td>Se activa análisis especializado y seguimiento permanente.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

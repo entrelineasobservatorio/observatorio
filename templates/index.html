@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}Inicio — EntreLíneas{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="EntreLíneas" class="hero-logo" />
+    <h1 class="hero-title">Detectamos lo que puede afectar tus derechos</h1>
+    <p class="hero-sub">Analizamos iniciativas del Congreso y te explicamos qué significan realmente para tu vida.</p>
+    <a href="{{ url_for('analisis') }}" class="btn-hero">Ver análisis</a>
+  </div>
+</section>
+
+<!-- QUÉ HACEMOS -->
+<section class="que-hacemos">
+  <div class="container">
+    <h2 class="section-title">¿Qué hacemos?</h2>
+    <div class="qh-grid">
+      <div class="qh-item">
+        <span class="qh-icon">👀</span>
+        <div>
+          <h3>Vigilamos</h3>
+          <p>Lo que ocurre en el Congreso.</p>
+        </div>
+      </div>
+      <div class="qh-item">
+        <span class="qh-icon">🧠</span>
+        <div>
+          <h3>Explicamos</h3>
+          <p>Lo que está en juego.</p>
+        </div>
+      </div>
+      <div class="qh-item">
+        <span class="qh-icon">📢</span>
+        <div>
+          <h3>Alertamos</h3>
+          <p>Cuando tus derechos pueden verse afectados.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LÍNEAS DE INVESTIGACIÓN -->
+<section class="lineas">
+  <div class="container">
+    <h2 class="section-title lineas-titulo">Nuestras líneas de investigación</h2>
+    <div class="lineas-grid">
+      <div class="linea-card">
+        <img src="{{ url_for('static', filename='img/ejes/blanco/seguridad_ciudadana.png') }}" alt="Seguridad ciudadana" class="linea-icon-img" />
+        <h3>Seguridad ciudadana</h3>
+        <p>Respuesta del Estado frente a la expansión del crimen organizado y la violencia, actuación policial y militar, uso de la fuerza, protección de defensores y garantías para ejercer derechos sin violencia ni arbitrariedad.</p>
+      </div>
+      <div class="linea-card">
+        <img src="{{ url_for('static', filename='img/ejes/blanco/institucionalidad.png') }}" alt="Institucionalidad democrática" class="linea-icon-img" />
+        <h3>Institucionalidad democrática</h3>
+        <p>Afectaciones a la separación y el equilibrio de poderes; la independencia y autonomía de las instituciones de justicia, electorales y de control; la integridad del sistema electoral; y el respeto del Estado de derecho</p>
+      </div>
+      <div class="linea-card">
+        <img src="{{ url_for('static', filename='img/ejes/blanco/genero.png') }}" alt="Género" class="linea-icon-img" />
+        <h3>Género</h3>
+        <p>Violencia basada en género, la igualdad de género y los derechos sexuales y reproductivos de las mujeres en toda su diversidad y de las personas LGBTI</p>
+      </div>
+      <div class="linea-card">
+        <img src="{{ url_for('static', filename='img/ejes/blanco/medio_ambiente.png') }}" alt="Medio ambiente y pueblos indígenas" class="linea-icon-img" />
+        <h3>Medio ambiente y pueblos indígenas</h3>
+        <p>Normativa ambiental y las facultades de fiscalización y sanción; el régimen de tierras, territorios y titulación comunal; los derechos colectivos, en particular la consulta previa; y la protección de las personas defensoras ambientales</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABLA DE PROYECTOS -->
+<section class="proyectos-section">
+  <div class="container">
+    <h2 class="section-title proyectos-titulo">Últimos análisis</h2>
+    {% if posts %}
+    <div class="tabla-wrap">
+      <table class="proyectos-tabla">
+        <thead>
+          <tr>
+            <th>Número</th>
+            <th>Proyecto de ley</th>
+            <th>Contenido</th>
+            <th>Nivel de riesgo</th>
+            <th>Análisis</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in posts %}
+          <tr>
+            <td class="col-numero">{{ post.meta.get('numero', '—') }}</td>
+            <td class="col-titulo">{{ post.meta.get('title', '') }}</td>
+            <td class="col-contenido">{{ post.meta.get('descripcion', '') }}</td>
+            <td class="col-riesgo">
+              {% set riesgo = post.meta.get('nivel_riesgo', '') %}
+              {% if riesgo %}
+              <span class="riesgo-badge riesgo-{{ riesgo|lower }}">{{ riesgo }}</span>
+              {% else %}—{% endif %}
+            </td>
+            <td class="col-link">
+              <a href="{{ url_for('post', slug=post.path) }}" class="tabla-link">Ver →</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Alertas — Entrelineas{% endblock %}
+
+{% block content %}
+<section class="page-header page-header--alertas">
+  <div class="container">
+    <h1><span class="hl hl--alertas">Alertas</span> legislativas</h1>
+    <p>Notificaciones sobre proyectos de ley que pueden afectar tus derechos.</p>
+  </div>
+</section>
+
+<section class="alertas-section">
+  <div class="container alertas-inner">
+    <div class="proximamente-badge">Próximamente</div>
+    <h2>Mantente un paso adelante</h2>
+    <p>Las alertas de Entrelineas te notificarán cuando un proyecto de ley relevante entre a debate, sea aprobado en comisión o esté a punto de votarse en el pleno.</p>
+    <ul class="alertas-features">
+      <li>🔔 Notificaciones sobre proyectos en tus temas de interés</li>
+      <li>📌 Resúmenes ejecutivos listos para compartir</li>
+      <li>⚠️ Identificación de normas con impacto regresivo en derechos</li>
+      <li>📅 Calendario legislativo actualizado semanalmente</li>
+    </ul>
+    <p class="alertas-cta-text">Mientras tanto, puedes seguir nuestros análisis o conectarte con nosotros en redes sociales para no perderte ninguna novedad.</p>
+    <a href="{{ url_for('analisis') }}" class="btn-primary">Ver análisis disponibles</a>
+  </div>
+</section>
+{% endblock %}

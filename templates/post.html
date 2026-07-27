@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}{{ post.meta.get('title', 'Análisis') }} — EntreLíneas{% endblock %}
+
+{% block content %}
+<article class="post-page">
+  <div class="container post-container">
+
+    <div class="post-header">
+      <a href="{{ url_for('analisis') }}" class="back-link">← Volver a análisis</a>
+      <span class="card-categoria">{{ post.meta.get('categoria', 'General') }}</span>
+      <h1>{{ post.meta.get('title', '') }}</h1>
+      <p class="post-descripcion">{{ post.meta.get('descripcion', '') }}</p>
+      <div class="post-meta">
+        <span class="post-autor">Por {{ post.meta.get('autor', '') }}</span>
+        <span class="post-date">{{ post.meta.get('date', '') }}</span>
+      </div>
+    </div>
+
+    <!-- FICHA DEL PROYECTO -->
+    {% set tiene_ficha = post.meta.get('estado') or post.meta.get('fecha_presentacion') or post.meta.get('comision') or post.meta.get('proximos_pasos') %}
+    {% set tiene_autoria = post.meta.get('congresista_nombre') or post.meta.get('congresista_bancada') %}
+
+    {% if tiene_ficha or tiene_autoria %}
+    <div class="ficha-proyecto">
+
+      {% if tiene_ficha %}
+      <div class="ficha-bloque">
+        <h3 class="ficha-titulo">📋 Ficha del proyecto</h3>
+        <div class="ficha-grid">
+          {% if post.meta.get('estado') %}
+          <div class="ficha-item">
+            <span class="ficha-label">Estado</span>
+            <span class="card-estado card-estado--{{ post.meta.get('estado', '')|lower|replace(' ', '-') }}">
+              {{ post.meta.get('estado') }}
+            </span>
+          </div>
+          {% endif %}
+          {% if post.meta.get('fecha_presentacion') %}
+          <div class="ficha-item">
+            <span class="ficha-label">Fecha de presentación</span>
+            <span class="ficha-valor">{{ post.meta.get('fecha_presentacion') }}</span>
+          </div>
+          {% endif %}
+          {% if post.meta.get('comision') %}
+          <div class="ficha-item ficha-item--wide">
+            <span class="ficha-label">Comisión responsable</span>
+            <span class="ficha-valor">{{ post.meta.get('comision') }}</span>
+          </div>
+          {% endif %}
+          {% if post.meta.get('proximos_pasos') %}
+          <div class="ficha-item ficha-item--wide">
+            <span class="ficha-label">Próximos pasos</span>
+            <span class="ficha-valor">{{ post.meta.get('proximos_pasos') }}</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if tiene_autoria %}
+      <div class="ficha-bloque ficha-autoria">
+        <h3 class="ficha-titulo">👤 Autoría</h3>
+        <div class="autoria-inner">
+          <div class="autoria-congresista">
+            {% if post.meta.get('congresista_foto') %}
+            <img
+              src="{{ url_for('static', filename='img/congresistas/' ~ post.meta.get('congresista_foto')) }}"
+              alt="{{ post.meta.get('congresista_nombre', '') }}"
+              class="autoria-foto"
+            />
+            {% else %}
+            <div class="autoria-avatar">
+              {{ post.meta.get('congresista_nombre', '?')[0] }}
+            </div>
+            {% endif %}
+            <div class="autoria-info">
+              {% if post.meta.get('congresista_nombre') %}
+              <span class="autoria-nombre">{{ post.meta.get('congresista_nombre') }}</span>
+              {% endif %}
+              {% if post.meta.get('congresista_bancada') %}
+              <span class="autoria-bancada">{{ post.meta.get('congresista_bancada') }}</span>
+              {% endif %}
+            </div>
+          </div>
+          {% if post.meta.get('bancada_logo') %}
+          <img
+            src="{{ url_for('static', filename='img/bancadas/' ~ post.meta.get('bancada_logo')) }}"
+            alt="{{ post.meta.get('congresista_bancada', '') }}"
+            class="autoria-bancada-logo"
+          />
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+    {% endif %}
+
+    <!-- CUERPO DEL POST -->
+    <div class="post-body">
+      {{ post.html | safe }}
+    </div>
+
+    <div class="post-footer">
+      <a href="{{ url_for('analisis') }}" class="btn-secondary">← Ver todos los análisis</a>
+    </div>
+
+  </div>
+</article>
+{% endblock %}

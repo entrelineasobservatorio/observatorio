@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Equipo — EntreLíneas{% endblock %}
+
+{% block content %}
+<section class="page-header page-header--equipo">
+  <div class="container">
+    <h1>Nuestro <span class="hl hl--equipo">equipo</span></h1>
+    <p>Trabajamos para traducir el lenguaje legislativo en información clara, accesible y útil para la ciudadanía.</p>
+  </div>
+</section>
+
+<section class="equipo-section">
+  <div class="container">
+    {% for area in areas %}
+    {% if area.miembros %}
+    <div class="area-grupo">
+      <h2 class="area-titulo">{{ area.nombre }}</h2>
+      <div class="equipo-grid">
+        {% for persona in area.miembros %}
+        <div class="miembro-card">
+          {% if persona.foto %}
+          <div class="miembro-avatar-wrap">
+            <img
+              src="{{ url_for('static', filename='img/team/' ~ persona.foto) }}"
+              alt="{{ persona.name }}"
+              class="miembro-foto"
+            />
+          </div>
+          {% else %}
+          <div class="miembro-avatar">{{ persona.name[0] }}</div>
+          {% endif %}
+          <h3 class="miembro-nombre">{{ persona.name }}</h3>
+          {% if persona.rol %}<span class="miembro-rol">{{ persona.rol }}</span>{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
