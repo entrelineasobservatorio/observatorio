@@ -10,8 +10,8 @@ app.config.update(
     FLATPAGES_EXTENSION=".md",
     FLATPAGES_MARKDOWN_EXTENSIONS=["meta", "fenced_code", "tables"],
     FREEZER_DESTINATION=os.path.join(BASE_DIR, "docs"),
-    FREEZER_BASE_URL="https://luciadiazs.github.io/entre_lineas/",
-    APPLICATION_ROOT="/entre_lineas",
+    FREEZER_BASE_URL="https://entrelineasobservatorio.github.io/observatorio/",
+    APPLICATION_ROOT="/observatorio",
 )
 
 pages = FlatPages(app)

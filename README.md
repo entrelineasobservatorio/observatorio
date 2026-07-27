@@ -1,9 +1,9 @@
-# Entrelineas — Observatorio de Proyectos de Ley
+# EntreLíneas — Observatorio de Proyectos de Ley
 
-Sitio web del observatorio legislativo Entrelineas, construido con Flask y Flask-FlatPages.
+Sitio web del observatorio legislativo EntreLíneas, construido con Flask y Flask-FlatPages.
 Publicado como sitio estático en **GitHub Pages** via Frozen-Flask.
 
-🔗 **URL pública:** https://luciadiazs.github.io/entre_lineas/
+🔗 **URL pública:** https://entrelineasobservatorio.github.io/observatorio/
 
 ---
 
@@ -33,7 +33,7 @@ python app.py
    git init
    git add .
    git commit -m "primer commit"
-   git remote add origin https://github.com/luciadiazs/entre_lineas.git
+   git remote add origin https://github.com/entrelineasobservatorio/observatorio.git
    git push -u origin main
    ```
 2. En GitHub → **Settings → Pages → Source**: selecciona `main` branch, carpeta `/docs`.
@@ -73,7 +73,7 @@ Luego corre `python freeze.py` y haz push.
 ## Estructura
 
 ```
-entrelineas/
+observatorio/
 ├── app.py                  # Rutas Flask
 ├── freeze.py               # Genera el sitio estático en /docs
 ├── content/posts/          # Análisis en Markdown
