@@ -24,6 +24,24 @@
   </div>
 </section>
 
+<section class="balance-section">
+  <div class="container">
+    <h2 class="section-title balance-titulo">Balance de las reformas 2024-2026</h2>
+    <div class="balance-pdf-wrap">
+      <iframe
+        src="{{ url_for('static', filename='pdfs/Un Congreso contra los derechos - Balance de las reformas del 2024 al 2026.pdf') }}"
+        class="balance-pdf-frame"
+        title="Balance de las reformas 2024-2026"
+        loading="lazy">
+      </iframe>
+    </div>
+    <a href="{{ url_for('static', filename='pdfs/Un Congreso contra los derechos - Balance de las reformas del 2024 al 2026.pdf') }}"
+       target="_blank" rel="noopener" class="btn-primary balance-pdf-btn">
+      Ver informe completo
+    </a>
+  </div>
+</section>
+
 {# ────────────────────────────────────────────────────────────
    Contenido real de Análisis, pausado temporalmente mientras no
    hay proyectos de ley cargados. Se deja comentado (no se borra)
