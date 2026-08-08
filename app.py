@@ -32,12 +32,21 @@ AREAS = [
             {"name": "Samantha Calderón", "foto": "samantha-calderon.jpg", "rol": ""},
             {"name": "Cielo Briceño",     "foto": "cielo-briceno.jpg",     "rol": ""},
             {"name": "Ariana Alcedo",     "foto": "ariana-alcedo.jpg",     "rol": ""},
+            {"name": "Yois Alejos",     "foto": "yois-alejos.jpg",     "rol": ""},
+            {"name": "Mauricio Capacyachi",     "foto": "mauricio-capacyachi.jpg",     "rol": ""},
+            {"name": "Sophia Tufinio",     "foto": "sophia-tufinio.jpg",     "rol": ""},
+            {"name": "Lilian Cánepa",     "foto": "lilian-canepa.jpg",     "rol": ""},
         ],
     },
     {
         "nombre": "Seguimiento",
         "miembros": [
             {"name": "Katherin Peña", "foto": "katherin-pena.jpg", "rol": "Coordinadora General"},
+            {"name": "Pierina Loayza", "foto": "pierina-loayza.jpg", "rol": ""},
+            {"name": "Yasmina Yarleque", "foto": "yasmina-yarleque.jpg", "rol": ""},
+            {"name": "Claudia Giron", "foto": "claudia-giron.jpg", "rol": ""},
+            {"name": "María Fernanda Flores", "foto": "maria-fernanda-flores.jpg", "rol": ""},
+            {"name": "Anielka Huamán", "foto": "anielka-huaman.jpg", "rol": ""},
         ],
     },
     {
@@ -45,12 +54,16 @@ AREAS = [
         "miembros": [
             {"name": "Mayra Cárdenas", "foto": "mayra-cardenas.jpg", "rol": "Coordinadora General"},
             {"name": "Claudia Tejada", "foto": "claudia-tejada.jpg", "rol": "Coordinadora de Traducción"},
+            {"name": "Jackeline Arce", "foto": "jackeline-arce.jpg", "rol": ""},
+            {"name": "Matias Brito", "foto": "matias-brito.jpg", "rol": ""},
+            {"name": "Carlos Espinoza", "foto": "carlos-espinoza.jpg", "rol": ""},
         ],
     },
     {
         "nombre": "Programación",
         "miembros": [
             {"name": "Lucía Díaz", "foto": "lucia-diaz.jpg", "rol": "Coordinadora General"},
+            {"name": "Nicolás Gutiérrez", "foto": "nicolas-gutierrez.jpg", "rol": ""},
         ],
     },
     {
@@ -58,6 +71,8 @@ AREAS = [
         "miembros": [
             {"name": "Aaron Vega",    "foto": "aaron-vega.jpg",    "rol": "Subcoordinador General"},
             {"name": "Camila Marzal", "foto": "camila-marzal.jpg", "rol": "Coordinadora General"},
+            {"name": "Emely Ramirez", "foto": "emely-ramirez.jpg", "rol": ""},
+            {"name": "Salvador Esquivel", "foto": "salvador-esquivel.jpg", "rol": ""},
         ],
     },
 ]
