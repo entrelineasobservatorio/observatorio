@@ -71,7 +71,6 @@ AREAS = [
         "miembros": [
             {"name": "Camila Marzal", "foto": "camila-marzal.jpg", "rol": "Coordinadora General"},
             {"name": "Aaron Vega",    "foto": "aaron-vega.jpg",    "rol": "Subcoordinador General"},
-            {"name": "Emely Ramirez", "foto": "emely-ramirez.jpg", "rol": ""},
             {"name": "Salvador Esquivel", "foto": "salvador-esquivel.png", "rol": ""},
         ],
     },
