@@ -60,10 +60,10 @@ AREAS = [
         ],
     },
     {
-        "nombre": "Programación",
+        "nombre": "Desarrollo y Tecnología",
         "miembros": [
             {"name": "Lucía Díaz", "foto": "lucia-diaz.jpg", "rol": "Coordinadora General"},
-            {"name": "Nicolás Gutiérrez", "foto": "nicolas-gutierrez.jpeg", "rol": ""},
+            {"name": "Nicolás Gutiérrez", "foto": "nicolas-gutierrez.jpeg", "rol": "Subcoordinador General"},
         ],
     },
     {
