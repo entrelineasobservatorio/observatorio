@@ -1,4 +1,5 @@
 import os
+import re
 from flask import Flask, render_template, abort
 from flask_flatpages import FlatPages
 
@@ -8,7 +9,7 @@ app = Flask(__name__)
 app.config.update(
     FLATPAGES_ROOT=os.path.join(BASE_DIR, "content", "posts"),
     FLATPAGES_EXTENSION=".md",
-    FLATPAGES_MARKDOWN_EXTENSIONS=["meta", "fenced_code", "tables"],
+    FLATPAGES_MARKDOWN_EXTENSIONS=["meta", "fenced_code", "tables", "md_in_html"],
     FREEZER_DESTINATION=os.path.join(BASE_DIR, "docs"),
     FREEZER_BASE_URL="https://entrelineasobservatorio.github.io/observatorio/",
     APPLICATION_ROOT="/observatorio",
@@ -82,11 +83,24 @@ CATEGORIAS = ["Todos", "Género", "Democracia", "Medio ambiente",
                "Pueblos indígenas", "Seguridad ciudadana"]
 
 
+@app.template_filter("drive_descarga")
+def drive_descarga(url):
+    m = re.search(r"drive\.google\.com/file/d/([\w-]+)", url or "")
+    if m:
+        return f"https://drive.google.com/uc?export=download&id={m.group(1)}"
+    return url
+
+
+def _orden_post(p):
+    num = re.search(r"\d+", str(p.meta.get("numero", "")))
+    return (str(p.meta.get("date", "")), int(num.group()) if num else 0)
+
+
 def get_posts(categoria=None):
-    posts = [p for p in pages]
+    posts = [p for p in pages if not p.meta.get("borrador")]
     if categoria and categoria != "Todos":
         posts = [p for p in posts if p.meta.get("categoria") == categoria]
-    posts.sort(key=lambda p: p.meta.get("date", ""), reverse=True)
+    posts.sort(key=_orden_post, reverse=True)
     return posts
 
 
@@ -111,7 +125,8 @@ def post(slug):
     page = pages.get(slug)
     if page is None:
         abort(404)
-    return render_template("post.html", post=page)
+    plantilla = "post_resumen.html" if page.meta.get("plantilla") == "resumen" else "post.html"
+    return render_template(plantilla, post=page)
 
 
 @app.route("/metodologia/")
@@ -135,11 +150,6 @@ def tendencias():
     ejes = [c for c in CATEGORIAS if c != "Todos"]
     conteo = {eje: len([p for p in all_posts if p.meta.get("categoria") == eje]) for eje in ejes}
     return render_template("tendencias.html", ejes=ejes, conteo=conteo, total=len(all_posts))
-
-
-@app.route("/alertas/")
-def alertas():
-    return render_template("alertas.html")
 
 
 if __name__ == "__main__":

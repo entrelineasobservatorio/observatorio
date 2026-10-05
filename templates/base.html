@@ -6,6 +6,7 @@
   <title>{% block title %}EntreLíneas{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
   <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/png" />
+  {% block head %}{% endblock %}
 </head>
 <body>
 
@@ -24,9 +25,7 @@
         <li><a href="{{ url_for('metodologia') }}" class="{{ 'active' if request.endpoint == 'metodologia' }}">Metodología</a></li>
         <li><a href="{{ url_for('tendencias') }}"  class="{{ 'active' if request.endpoint == 'tendencias' }}">Tendencias</a></li>
         <li><a href="{{ url_for('equipo') }}"     class="{{ 'active' if request.endpoint == 'equipo' }}">Equipo</a></li>
-        <li><a href="{{ url_for('nosotros') }}"   class="{{ 'active' if request.endpoint == 'nosotros' }}">Sobre Nosotrxs</a></li>
-        <li><a href="{{ url_for('alertas') }}"    class="{{ 'active' if request.endpoint == 'alertas' }}">Alertas</a></li>
-      </ul>
+        <li><a href="{{ url_for('nosotros') }}"   class="{{ 'active' if request.endpoint == 'nosotros' }}">Sobre Nosotrxs</a></li>      </ul>
     </div>
   </nav>
 

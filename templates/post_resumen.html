@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}{{ post.meta.get('title', 'Análisis') }} — EntreLíneas{% endblock %}
+
+{% block head %}
+  <meta name="description" content="{{ post.meta.get('descripcion', '') }}" />
+  <meta property="og:title" content="{{ post.meta.get('title', '') }}" />
+  <meta property="og:description" content="{{ post.meta.get('descripcion', '') }}" />
+  <meta property="og:image" content="{{ url_for('static', filename='img/logo.png', _external=True) }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet" />
+  <style media="print">
+    .navbar, .footer, .res-compartir, .res-botones { display: none !important; }
+    .res-portada { background: none !important; color: #1A1A2E !important; }
+    .res-cuerpo { grid-template-columns: 1fr !important; }
+  </style>
+{% endblock %}
+
+{% block content %}
+{% set m = post.meta %}
+<div class="res-page">
+
+  <!-- PORTADA -->
+  <section class="res-portada">
+    <div class="container">
+      <p class="res-migas"><a href="{{ url_for('analisis') }}">Análisis</a> / {{ m.get('eje_nombre', '') }}</p>
+      {% if m.get('eje') %}
+      <div class="res-eje">
+        <img src="{{ url_for('static', filename='img/ejes/blanco/' ~ m.get('eje') ~ '.png') }}" alt="" />
+        {{ m.get('eje_nombre', '') }}
+      </div>
+      {% endif %}
+      <p class="res-expediente">{{ m.get('numero', '') }}<small>{{ m.get('expediente', '') }}</small></p>
+      <h1>{{ m.get('title', '') }}</h1>    </div>
+  </section>
+
+  <!-- CUERPO -->
+  <div class="container res-cuerpo">
+
+    <article class="res-texto">
+      {% if m.get('entrada') %}<p class="res-entrada">{{ m.get('entrada') }}</p>{% endif %}
+
+      {{ post.html | safe }}
+
+      {% if m.get('frase') %}
+      <section class="res-frase">
+        <h2>En una frase</h2>
+        <p>{{ m.get('frase') }}</p>
+      </section>
+      {% endif %}
+    </article>
+
+    <!-- FICHA DEL PROYECTO -->
+    <aside class="res-ficha" aria-labelledby="res-ficha-titulo">
+      <h2 id="res-ficha-titulo">Ficha del proyecto</h2>
+      {% if m.get('ficha') %}
+      <dl>
+        {% for f in m.get('ficha') %}
+        <dt>{{ f.etiqueta }}</dt>
+        <dd>{{ f.valor }}</dd>
+        {% endfor %}
+      </dl>
+      {% endif %}
+
+      {% if m.get('etapas') %}
+      {% set actual = m.get('etapa_actual', 1) %}
+      <p class="res-ficha-sub">Dónde está</p>
+      <ol class="res-etapas">
+        {% for e in m.get('etapas') %}
+        <li class="{{ 'hecho' if loop.index < actual else ('actual' if loop.index == actual else '') }}"
+            {% if loop.index == actual %}aria-current="step"{% endif %}>{{ e }}</li>
+        {% endfor %}
+      </ol>
+      {% endif %}
+
+      <div class="res-botones">
+        {% if m.get('pdf_url') %}
+        <a class="res-boton res-boton--principal" href="{{ m.get('pdf_url') | drive_descarga }}" target="_blank" rel="noopener">Descargar el análisis completo (PDF)</a>
+        {% endif %}
+        {% if m.get('congreso_url') %}
+        <a class="res-boton res-boton--secundario" href="{{ m.get('congreso_url') }}" target="_blank" rel="noopener">Ver el proyecto en el Congreso</a>
+        {% endif %}
+      </div>
+
+      <div class="res-compartir">
+        <span>Compartir</span>
+        <a id="res-compartir-wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="res-compartir-x" href="#" target="_blank" rel="noopener">X</a>
+        <button type="button" id="res-copiar">Copiar enlace</button>
+      </div>
+    </aside>
+
+  </div>
+
+</div>
+
+<script>
+  (function () {
+    var url = window.location.href;
+    var titulo = document.querySelector('.res-portada h1').textContent.trim();
+    var texto = encodeURIComponent(titulo + ' — EntreLíneas ' + url);
+    document.getElementById('res-compartir-wa').href = 'https://wa.me/?text=' + texto;
+    document.getElementById('res-compartir-x').href = 'https://twitter.com/intent/tweet?text=' + texto;
+    var boton = document.getElementById('res-copiar');
+    boton.addEventListener('click', function () {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(function () {
+          boton.textContent = 'Enlace copiado';
+          setTimeout(function () { boton.textContent = 'Copiar enlace'; }, 2000);
+        });
+      }
+    });
+  })();
+</script>
+{% endblock %}

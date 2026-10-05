@@ -486,7 +486,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   PAGE HEADER (Análisis, Equipo, Alertas)
+   PAGE HEADER (Análisis, Equipo, Tendencias, Sobre Nosotrxs)
    ============================================================ */
 .page-header {
   background: linear-gradient(135deg, #fdf0f3 0%, #eef1fb 100%);
@@ -512,20 +512,17 @@ ul { list-style: none; }
 .page-header--tendencias { background: #A9346D; }
 .page-header--equipo { background: #A9346D; }
 .page-header--nosotrxs { background: #A9346D; }
-.page-header--alertas { background: #A9346D; }
 
 .page-header--analisis h1,   .page-header--analisis p,
 .page-header--tendencias h1, .page-header--tendencias p,
 .page-header--equipo h1,     .page-header--equipo p,
-.page-header--nosotrxs h1,   .page-header--nosotrxs p,
-.page-header--alertas h1,    .page-header--alertas p { color: #fff; }
+.page-header--nosotrxs h1,   .page-header--nosotrxs p { color: #fff; }
 
 /* Palabra destacada tipo editorial */
 .hl { display: inline-block; padding: 0 .2em; line-height: 1.2; }
 .hl--tendencias { background: #FFC400; color: #1A1A2E; }
 .hl--equipo     { background: #FFC400; color: #1A1A2E; }
 .hl--nosotrxs   { background: #FFC400; color: #1A1A2E; }
-.hl--alertas    { background: #FFC400; color: #1A1A2E; }
 .hl--analisis   { background: #FFC400; color: #1A1A2E; }
 
 /* ============================================================
@@ -685,7 +682,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   ALERTAS
+   SECCIÓN "PRÓXIMAMENTE" (la usa Tendencias)
    ============================================================ */
 .alertas-section { padding: 5rem 1rem; background: var(--gris-bg); min-height: 60vh; }
 
@@ -1405,4 +1402,78 @@ ul { list-style: none; }
   .cards-grid { grid-template-columns: 1fr; }
   .filtros { gap: .4rem; }
   .filtro-btn { font-size: .8rem; padding: .35rem .85rem; }
+}
+
+/* ============================================================
+   RESUMEN DE ANÁLISIS (plantilla post_resumen.html)
+   ============================================================ */
+.res-page {
+  --res-titulos: "Archivo", "Segoe UI", system-ui, sans-serif;
+  --res-lectura: "Literata", Georgia, "Times New Roman", serif;
+  --res-linea: var(--gris-borde);
+}
+
+/* Portada */
+.res-portada { background: #A9346D; color: var(--blanco); padding-block: 2.5rem 3.25rem; }
+.res-migas { font-family: var(--res-titulos); font-size: .9rem; margin: 0 0 2rem; opacity: .85; }
+.res-migas a { color: var(--blanco); text-decoration: underline; }
+.res-eje { display: inline-flex; align-items: center; gap: .55rem; font-family: var(--res-titulos); font-weight: 600; font-size: .95rem; margin-bottom: 1.25rem; }
+.res-eje img { width: 30px; height: 30px; }
+.res-expediente { font-family: var(--res-titulos); font-weight: 800; font-size: clamp(2.6rem, 7vw, 5rem); line-height: .95; letter-spacing: -.02em; margin: 0; }
+.res-expediente small { display: block; font-size: .32em; font-weight: 600; letter-spacing: 0; margin-top: .6rem; opacity: .8; }
+.res-portada h1 { font-family: var(--res-titulos); font-weight: 700; font-size: clamp(1.5rem, 3.2vw, 2.25rem); line-height: 1.2; max-width: 26ch; margin: 1.5rem 0 0; }
+/* Cuerpo: texto + ficha */
+.res-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 4rem; padding-block: 3rem 4rem; align-items: start; }
+.res-texto { max-width: 68ch; font-family: var(--res-lectura); font-size: 1.0625rem; line-height: 1.7; }
+.res-texto p { margin: 0 0 1.25rem; }
+.res-texto a { color: var(--azul); text-decoration: underline; }
+.res-texto .res-entrada { font-size: 1.2rem; line-height: 1.65; }
+.res-texto h2 { font-family: var(--res-titulos); font-weight: 800; font-size: 1.6rem; line-height: 1.2; margin: 3rem 0 1.25rem; }
+/* Argumento: "### Título" seguido de su párrafo, unidos por una barra rosa */
+.res-texto h3 { font-family: var(--res-titulos); font-weight: 700; font-size: 1.15rem; line-height: 1.35; margin: 0; padding: .1rem 0 .35rem 1.25rem; border-left: 4px solid var(--rosa); }
+.res-texto h3 + p { margin: 0 0 1.75rem; padding: 0 0 .1rem 1.25rem; border-left: 4px solid var(--rosa); }
+
+.res-texto ul, .res-texto ol { margin: 0 0 1.25rem; padding-left: 1.4rem; }
+.res-texto ul { list-style: disc; }
+.res-texto ol { list-style: decimal; }
+
+.res-texto .res-bancadas ul { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 1.25rem; padding: 0; list-style: none; }
+.res-bancadas li { font-family: var(--res-titulos); font-weight: 600; font-size: .88rem; background: var(--gris-bg); border: 1px solid var(--res-linea); padding: .3rem .7rem; border-radius: 3px; }
+.res-texto blockquote { margin: 1.5rem 0; padding: 0 0 0 1.25rem; border-left: 4px solid var(--azul); font-size: 1.15rem; }
+.res-texto blockquote p { margin-bottom: .5rem; }
+.res-texto blockquote p + p { font-family: var(--res-titulos); font-size: .9rem; color: var(--texto-sub); }
+
+.res-frase { background: var(--gris-bg); margin: 3rem 0 0; padding: 2rem 2rem 2.25rem; border-top: 6px solid var(--rosa); }
+.res-texto .res-frase h2 { margin: 0 0 .75rem; font-size: 1.1rem; color: var(--rosa); }
+.res-texto .res-frase p { font-size: 1.35rem; line-height: 1.5; font-weight: 500; margin: 0; }
+
+/* Ficha del proyecto */
+.res-ficha { position: sticky; top: 5.5rem; border: 1px solid var(--res-linea); border-top: 6px solid var(--azul); padding: 1.5rem; font-family: var(--res-titulos); font-size: .95rem; line-height: 1.45; }
+.res-ficha h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+.res-ficha dt { color: var(--texto-sub); font-size: .85rem; font-weight: 500; }
+.res-ficha dd { margin: 0 0 .85rem; font-weight: 600; }
+.res-ficha-sub { color: var(--texto-sub); font-size: .85rem; font-weight: 500; margin: 0; }
+
+.res-etapas { margin: .5rem 0 1.5rem; padding: 0; list-style: none; }
+.res-etapas li { position: relative; padding: 0 0 .9rem 1.6rem; color: var(--texto-sub); }
+.res-etapas li::before { content: ""; position: absolute; left: 0; top: .3em; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--res-linea); background: var(--blanco); }
+.res-etapas li:not(:last-child)::after { content: ""; position: absolute; left: 7px; top: 1.15em; bottom: -.1em; width: 2px; background: var(--res-linea); }
+.res-etapas li.hecho { color: var(--texto); }
+.res-etapas li.hecho::before { background: var(--azul); border-color: var(--azul); }
+.res-etapas li.actual { color: var(--texto); font-weight: 700; }
+.res-etapas li.actual::before { background: var(--rosa); border-color: var(--rosa); box-shadow: 0 0 0 4px rgba(200,57,90,.18); }
+
+.res-boton { display: block; text-align: center; font-family: var(--res-titulos); font-weight: 700; padding: .85rem 1rem; border-radius: 4px; margin-top: .6rem; transition: background var(--trans), color var(--trans); }
+.res-boton--principal { background: var(--rosa); color: var(--blanco); }
+.res-boton--principal:hover { background: #a82e4b; }
+.res-boton--secundario { border: 2px solid var(--azul); color: var(--azul); }
+.res-boton--secundario:hover { background: var(--gris-bg); }
+
+.res-compartir { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--res-linea); }
+.res-compartir span { width: 100%; color: var(--texto-sub); font-size: .85rem; }
+.res-compartir a, .res-compartir button { font: inherit; font-size: .85rem; font-weight: 600; background: var(--gris-bg); border: 1px solid var(--res-linea); color: var(--texto); padding: .35rem .7rem; border-radius: 3px; cursor: pointer; }
+
+@media (max-width: 900px) {
+  .res-cuerpo { grid-template-columns: 1fr; gap: 2rem; }
+  .res-ficha { position: static; order: -1; }
 }
