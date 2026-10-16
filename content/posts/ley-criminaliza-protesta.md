@@ -1,4 +1,5 @@
 title: "Proyecto de ley que criminaliza la protesta social: análisis crítico"
+borrador: true
 numero: "8012/2024-CR"
 date: "2025-05-10"
 categoria: "DDHH"

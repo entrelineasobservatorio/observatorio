@@ -9,18 +9,48 @@
   </div>
 </section>
 
-<section class="alertas-section">
-  <div class="container alertas-inner">
-    <div class="proximamente-badge">Próximamente</div>
-    <h2>Estamos preparando nuestros primeros análisis</h2>
-    <p>Muy pronto encontrarás aquí un seguimiento riguroso de los proyectos de ley que discute el Congreso, con nivel de riesgo, resúmenes claros y perspectiva crítica sobre su impacto en derechos.</p>
-    <ul class="alertas-features">
-      <li>📋 Tabla de proyectos de ley en seguimiento</li>
-      <li>🏷️ Filtros por eje temático (género, democracia, medio ambiente, pueblos indígenas, seguridad ciudadana)</li>
-      <li>📖 Análisis a profundidad de cada iniciativa</li>
-    </ul>
-    <p class="alertas-cta-text">Mientras tanto, síguenos en redes sociales para enterarte apenas publiquemos nuestro primer análisis.</p>
-    <a href="https://instagram.com/observatorio_entrelineas" target="_blank" rel="noopener" class="btn-primary">Síguenos en Instagram</a>
+<!-- TABLA DE PROYECTOS -->
+<section class="proyectos-section">
+  <div class="container">
+    <h2 class="section-title proyectos-titulo">Últimos análisis</h2>
+    {% if posts %}
+    {% set hay_riesgo = posts|map(attribute='meta')|selectattr('nivel_riesgo')|list %}
+    <div class="tabla-wrap">
+      <table class="proyectos-tabla">
+        <thead>
+          <tr>
+            <th>Número</th>
+            <th>Título</th>
+            <th>Contenido</th>
+            {% if hay_riesgo %}<th>Nivel de riesgo</th>{% endif %}
+            <th>Análisis</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in posts %}
+          <tr>
+            <td class="col-numero">{{ post.meta.get('numero', '—') }}</td>
+            <td class="col-titulo">{{ post.meta.get('title', '') }}</td>
+            <td class="col-contenido">{{ post.meta.get('descripcion', '') }}</td>
+            {% if hay_riesgo %}
+            <td class="col-riesgo">
+              {% set riesgo = post.meta.get('nivel_riesgo', '') %}
+              {% if riesgo %}
+              <span class="riesgo-badge riesgo-{{ riesgo|lower }}">{{ riesgo }}</span>
+              {% else %}—{% endif %}
+            </td>
+            {% endif %}
+            <td class="col-link">
+              <a href="{{ url_for('post', slug=post.path) }}" class="tabla-link">Ver ficha →</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="empty-state">No hay análisis en esta categoría todavía.</p>
+    {% endif %}
   </div>
 </section>
 
@@ -43,53 +73,11 @@
 </section>
 
 {# ────────────────────────────────────────────────────────────
-   Contenido real de Análisis, pausado temporalmente mientras no
-   hay proyectos de ley cargados. Se deja comentado (no se borra)
-   para no perder la estructura ya construida.
+   Filtros por eje y grilla de tarjetas, pausados temporalmente.
+   Se dejan comentados (no se borran) para no perder la
+   estructura ya construida.
    ──────────────────────────────────────────────────────────── #}
 {#
-<!-- TABLA DE PROYECTOS -->
-<section class="proyectos-section">
-  <div class="container">
-    <h2 class="section-title proyectos-titulo">Últimos análisis</h2>
-    {% if posts %}
-    <div class="tabla-wrap">
-      <table class="proyectos-tabla">
-        <thead>
-          <tr>
-            <th>Número</th>
-            <th>Proyecto de ley</th>
-            <th>Contenido</th>
-            <th>Nivel de riesgo</th>
-            <th>Análisis</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for post in posts %}
-          <tr>
-            <td class="col-numero">{{ post.meta.get('numero', '—') }}</td>
-            <td class="col-titulo">{{ post.meta.get('title', '') }}</td>
-            <td class="col-contenido">{{ post.meta.get('descripcion', '') }}</td>
-            <td class="col-riesgo">
-              {% set riesgo = post.meta.get('nivel_riesgo', '') %}
-              {% if riesgo %}
-              <span class="riesgo-badge riesgo-{{ riesgo|lower }}">{{ riesgo }}</span>
-              {% else %}—{% endif %}
-            </td>
-            <td class="col-link">
-              <a href="{{ url_for('post', slug=post.path) }}" class="tabla-link">Ver →</a>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    {% else %}
-    <p class="empty-state">No hay análisis todavía.</p>
-    {% endif %}
-  </div>
-</section>
-
 <section class="analisis-section">
   <div class="container">
 
