@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Votaciones - EntreLíneas{% endblock %}
+
+{% block content %}
+
+<section class="page-header page-header--votaciones">
+  <div class="container">
+    <h1><span class="hl hl--votaciones">Votaciones</span> del Pleno</h1>
+    <p>Quién vota como quién, con qué tanta lealtad a su bancada, y en qué se parecen o se alejan los partidos - a partir del registro oficial de asistencias y votaciones del Congreso.</p>
+  </div>
+</section>
+
+<div class="votaciones-wrap">
+  <div class="vot-section" id="vt3">
+    <h2 class="vot-section-heading">Índice de similitud</h2>
+    <div class="vot-panel">
+      <h2>Índice de similitud</h2>
+      <div class="panel-note">Basado en las votaciones del periodo 2026-2031</div>
+      <div class="stat-row" id="votStatRow"></div>
+    </div>
+    <div class="vot-panel">
+      <h2>Similitud entre bancadas</h2>
+      <div class="panel-note" id="votMatrixNote"></div>
+      <div class="matrix-wrap"><table class="matrix" id="votBancadaMatrix"></table></div>
+    </div>
+    <div class="vot-panel">
+      <h2>Cohesión individual - ¿cada congresista vota como su bancada?</h2>
+      <div class="panel-note">% de coincidencia de cada congresista con la posición mayoritaria de <b>cada</b> bancada (no solo la propia)</div>
+      <div class="panel-note"><b>Alineamiento</b> según el % de coincidencia con la propia bancada: <b>Alineado</b> 80% o más · <b>Parcial</b> entre 60% y menos de 80% · <b>Disidente</b> menos de 60%. Solo cuentan las votaciones en que el congresista emitió voto (sí, no, abstención o sin respuesta); ausencias y licencias no se consideran.</div>
+      <div class="panel-note" id="votIndivResumen"></div>
+      <input class="vot-search-box" id="votIndivSearch" placeholder="Buscar por nombre...">
+      <div class="vot-table-scroll">
+        <table class="indiv">
+          <thead><tr><th>Diputado/Senador</th><th>Bancada</th><th style="text-align:right">% con propia</th><th>Alineamiento</th></tr></thead>
+          <tbody id="votIndivBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="vot-section" id="vt1">
+    <h2 class="vot-section-heading">Quién votó qué</h2>
+    <div class="vot-panel">
+      <h2>Elige una votación</h2>
+      <div class="filtros" id="votCamaraToggle">
+        <button class="filtro-btn active" data-camara="diputados">Diputados</button>
+        <button class="filtro-btn" data-camara="senado">Senado</button>
+      </div>
+      <select id="votSelect"></select>
+      <div class="vote-meta" id="votMeta"></div>
+      <div class="vote-asunto-full" id="votAsuntoFull"></div>
+      <div class="legend-row" id="votLegendRow"></div>
+      <div id="hemiWrap"><svg id="votHemi"></svg></div>
+      <div class="caveat" id="votOtroCaveat"></div>
+    </div>
+  </div>
+
+  <div class="vot-section" id="vt2">
+    <h2 class="vot-section-heading">Ausentes</h2>
+    <div class="vot-panel">
+      <h2>Congresistas/Senadores con votos marcados ausentes</h2>
+      <div class="panel-note" id="votAusentesNote"></div>
+      <div class="aus-controles">
+        <div class="filtros" id="votAusModo">
+          <button class="filtro-btn active" data-modo="dia">Por día de sesión</button>
+          <button class="filtro-btn" data-modo="pase">Por pase de lista</button>
+        </div>
+        <div class="aus-fechas">
+          <label>Desde <input type="date" id="votAusDesde"></label>
+          <label>Hasta <input type="date" id="votAusHasta"></label>
+          <button class="filtro-btn" id="votAusReset" type="button">Todo el período</button>
+        </div>
+      </div>
+      <div class="panel-note" id="votAusentesResumen"></div>
+      <input class="vot-search-box" id="votAusBuscar" placeholder="Buscar por nombre...">
+      <div id="votAusentesBars"></div>
+    </div>
+  </div>
+</div>
+
+<div id="voteTooltip"></div>
+
+<script>window.VOTACIONES_DATA_URL = "{{ url_for('static', filename='data/votaciones_dashboard.json') }}";</script>
+<script src="{{ url_for('static', filename='js/votaciones.js') }}" defer></script>
+
+{% endblock %}

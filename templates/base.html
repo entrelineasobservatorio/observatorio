@@ -22,6 +22,7 @@
         <li><a href="{{ url_for('index') }}"      class="{{ 'active' if request.endpoint == 'index' }}">Inicio</a></li>
         <li><a href="{{ url_for('analisis') }}"     class="{{ 'active' if request.endpoint in ('analisis','post') }}">Análisis</a></li>
         <li><a href="{{ url_for('metodologia') }}" class="{{ 'active' if request.endpoint == 'metodologia' }}">Metodología</a></li>
+        <li><a href="{{ url_for('votaciones') }}"  class="{{ 'active' if request.endpoint == 'votaciones' }}">Votaciones</a></li>
         <li><a href="{{ url_for('tendencias') }}"  class="{{ 'active' if request.endpoint == 'tendencias' }}">Tendencias</a></li>
         <li><a href="{{ url_for('equipo') }}"     class="{{ 'active' if request.endpoint == 'equipo' }}">Equipo</a></li>
         <li><a href="{{ url_for('nosotros') }}"   class="{{ 'active' if request.endpoint == 'nosotros' }}">Sobre Nosotrxs</a></li>

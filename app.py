@@ -119,6 +119,11 @@ def metodologia():
     return render_template("metodologia.html")
 
 
+@app.route("/votaciones/")
+def votaciones():
+    return render_template("votaciones.html")
+
+
 @app.route("/equipo/")
 def equipo():
     return render_template("equipo.html", areas=AREAS)
